@@ -8,7 +8,7 @@
 
 ```text
 Langchain/
-├── data/                                      # مجلد الملفات والبيانات التجريبية
+├── data/                                      # مجلد الملفات والبيانات التجريبية وقواعد البيانات
 │   ├── sample.pdf                             # ملف PDF تجريبي لاختبار الـ PDF Loaders
 │   └── sample.txt                             # ملف نصي تجريبي لاختبار TextLoader
 │
@@ -25,12 +25,20 @@ Langchain/
 │   │   ├── 03_html_splitters.ipynb            # تقسيم هياكل الويب مع الحفاظ على العناوين (HTML Splitters)
 │   │   └── 04_json_splitter.ipynb             # تقسيم البيانات الهيكلية (Recursive JSON Splitter)
 │   │
-│   └── 03_embeddings/                         # المرحلة الثالثة: التضمينات والبحث الدلالي
-│       ├── 01_huggingface_embeddings.ipynb    # نماذج التضمين المحلية وعبر Hugging Face Inference
-│       ├── 02_fastembed_embeddings.ipynb      # تضمينات فائقة السرعة على المعالج (FastEmbed ONNX)
-│       ├── 03_semantic_search_cosine_similarity.ipynb # البحث الدلالي وحساب تشابه جيب التمام (Cosine Similarity)
-│       ├── 04_cache_backed_embeddings.ipynb   # تسريع الأداء وحفظ التضمينات مؤقتاً (CacheBackedEmbeddings)
-│       └── 05_end_to_end_pipeline.ipynb       # مسار متكامل: Ingestion ➔ Splitting ➔ Embedding ➔ Search
+│   ├── 03_embeddings/                         # المرحلة الثالثة: التضمينات والبحث الدلالي
+│   │   ├── 01_huggingface_embeddings.ipynb    # نماذج التضمين المحلية وعبر Hugging Face Inference
+│   │   ├── 02_fastembed_embeddings.ipynb      # تضمينات فائقة السرعة على المعالج (FastEmbed ONNX)
+│   │   ├── 03_semantic_search_cosine_similarity.ipynb # البحث الدلالي وحساب تشابه جيب التمام (Cosine Similarity)
+│   │   ├── 04_cache_backed_embeddings.ipynb   # تسريع الأداء وحفظ التضمينات مؤقتاً (CacheBackedEmbeddings)
+│   │   └── 05_end_to_end_pipeline.ipynb       # مسار متكامل: Ingestion ➔ Splitting ➔ Embedding ➔ Search
+│   │
+│   └── 04_vector_stores/                      # المرحلة الرابعة: مستودعات المتجهات واستراتيجيات الاسترجاع
+│       ├── 01_in_memory_vector_store.ipynb    # المستودع المدمج بالذاكرة في نواة LangChain Core
+│       ├── 02_faiss_vector_store.ipynb        # مكتبة FAISS من Meta (حفظ محلي، مسافات L2، ودمج الفهارس)
+│       ├── 03_chroma_vector_store.ipynb       # مستودع Chroma DB (تخزين دائم، مجموعات، وفلترة متقدمة)
+│       ├── 04_qdrant_vector_store.ipynb       # محرك Qdrant بلغة Rust (أداء فائق وفلترة بالـ Payload)
+│       ├── 05_docarray_and_sklearn_stores.ipynb # مستودعات خفيفة تعتمد على Scikit-Learn و DocArray
+│       └── 06_retrievers_and_search_types.ipynb # استراتيجيات الاسترجاع المتقدمة (Similarity, MMR, Threshold, LCEL)
 │
 ├── .env                                       # ملف المفاتيح السرية (محلي - غير مرفوع للـ Git)
 ├── .env.example                               # نموذج متغيرات البيئة والمفاتيح المطلوبة
@@ -63,17 +71,29 @@ Langchain/
 - **Cache-Backed Embeddings**: تخزين التضمينات في مخزن محلي (`LocalFileStore` أو `InMemoryByteStore`) لتجنب إعادة حساب نفس النصوص وتوفير الوقت والتكلفة.
 - **End-to-End Pipeline**: تطبيق مسار متكامل يبدأ من المستندات الخام وصولاً إلى استرجاع النتائج الأكثر ملاءمة دلالياً.
 
+### 4️⃣ مستودعات المتجهات والمُسترجعات (Vector Stores & Retrievers)
+- **InMemoryVectorStore**: مستودع خفيف جداً مدمج في `langchain_core` للاختبارات السريعة والجلسات المؤقتة.
+- **FAISS (Facebook AI)**: الفهرسة عالية الكفاءة للمتجهات الكثيفة، حساب مسافات L2، حفظ وتحميل الفهارس محلياً (`save_local` / `load_local`)، ودمج عدة فهارس (`merge_from`).
+- **Chroma DB**: تخزين دائم على القرص (`persist_directory`)، إدارة المجموعات، وعمليات الفلترة المتقدمة بالمعاملات المنطقية (`$and`, `$gte`, `$in`).
+- **Qdrant**: محرك متجهي فائق السرعة بلغة Rust، يدعم التشغيل بالذاكرة أو على القرص أو عبر السحابة مع فلترة الـ Payload.
+- **Scikit-Learn & DocArray**: بناء مستودعات متجهية محلية باستخدام خوارزميات `NearestNeighbors` في Scikit-Learn مع خيارات الحفظ بصيغة JSON و Parquet.
+- **Retrievers & Search Strategies**: تحويل أي مستودع إلى Retriever واستخدام أنماط بحث متطورة:
+  - `similarity`: البحث بالتشابه القياسي لأقرب K عناصر.
+  - `mmr` (Maximal Marginal Relevance): تحقيق التوازن المثالي بين دقة الصلة وتنوع النصوص لتفادي التكرار.
+  - `similarity_score_threshold`: استبعاد النتائج التي تقل عن نسبة ثقة معينة.
+  - **LCEL Integration**: دمج المُسترجِع داخل سلاسل RAG متكاملة مع الـ Prompt Templates.
+
 ---
 
 ## 🛠️ التقنيات والمكتبات المستخدمة (Tech Stack)
 
 - **Language**: Python 3.12+
 - **Environment & Package Manager**: [uv](https://github.com/astral-sh/uv)
-- **Frameworks**:
-  - `langchain-community`, `langchain-huggingface`, `langchain-groq`
-  - `sentence-transformers`, `fastembed`
-  - `pypdf`, `pymupdf`, `beautifulsoup4`, `arxiv`
-  - `python-dotenv`, `ipykernel`
+- **Frameworks & Stores**:
+  - `langchain-core`, `langchain-community`, `langchain-chroma`, `langchain-qdrant`
+  - `faiss-cpu`, `chromadb`, `qdrant-client`, `scikit-learn`, `docarray`
+  - `langchain-huggingface`, `sentence-transformers`, `fastembed`, `langchain-groq`
+  - `pypdf`, `pymupdf`, `beautifulsoup4`, `arxiv`, `python-dotenv`
 
 ---
 
