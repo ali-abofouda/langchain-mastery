@@ -1,11 +1,84 @@
-# Python-generated files
+# ==========================================
+# 🔐 Environment Variables & Secrets
+# ==========================================
+.env
+.env.local
+.env.*.local
+*.pem
+*.key
+
+# ==========================================
+# 🐍 Python & Virtual Environments
+# ==========================================
 __pycache__/
-*.py[oc]
+*.py[cod]
+*$py.class
+*.so
 build/
 dist/
 wheels/
-*.egg-info
+*.egg-info/
+.installed.cfg
+*.egg
 
-# Virtual environments
-.venv
-.env
+# Virtual environments (uv, venv, conda)
+.venv/
+venv/
+env/
+ENV/
+
+# Python Tools Caches & Logs
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.coverage
+htmlcov/
+*.log
+
+# ==========================================
+# 📓 Jupyter Notebooks
+# ==========================================
+.ipynb_checkpoints/
+*-checkpoint.ipynb
+
+# ==========================================
+# 🗄️ Vector Databases & Generated Data
+# ==========================================
+# FAISS, Chroma, Qdrant & Scikit-Learn local caches
+*.faiss
+*.pkl
+data/faiss_index/
+data/faiss_test_index/
+data/faiss_e2e_index/
+data/*_index/
+data/*_db/
+data/chroma_db/
+data/qdrant_db/
+data/embedding_cache/
+data/sklearn_index.json
+data/sklearn_test.json
+data/*.json
+vector_store/
+chroma_vector_store/
+
+# Keep sample reference files in data/
+!data/sample.txt
+!data/sample.pdf
+
+# ==========================================
+# 🛠️ IDE, Editors & OS Files
+# ==========================================
+.vscode/
+.idea/
+*.swp
+*~
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ==========================================
+# 🧪 Scratch & Temporary Test Files
+# ==========================================
+scratch/
+temp/
+tmp/

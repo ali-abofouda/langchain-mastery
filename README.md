@@ -14,6 +14,7 @@ Langchain/
 │
 ├── notebooks/                                 # كراسات Jupyter Notebook التعليمية
 │   ├── 01_data_ingestion/                     # المرحلة الأولى: استيراد واستيعاب البيانات
+│   │   ├── README.md                          # 📖 الدليل النظري المفاهيمي الشامل (عربي / English)
 │   │   ├── 01_text_loader.ipynb               # قراءة الملفات النصية الخام (TextLoader)
 │   │   ├── 02_pdf_loader.ipynb                # استخراج نصوص PDF (PyPDF & PyMuPDF)
 │   │   ├── 03_web_loader.ipynb                # سحب محتوى صفحات الويب (WebBaseLoader & BeautifulSoup)
@@ -21,6 +22,7 @@ Langchain/
 │   │   └── 05_end_to_end_data_ingestion.ipynb # 🚀 مسار استيعاب متكامل من الصفر لكافة المصادر
 │   │
 │   ├── 02_text_splitting/                     # المرحلة الثانية: تقنيات تقسيم النصوص (Chunking)
+│   │   ├── README.md                          # 📖 الدليل النظري المفاهيمي الشامل (عربي / English)
 │   │   ├── 01_recursive_character_splitter.ipynb # التقسيم الذكي التكراري للنصوص العامة
 │   │   ├── 02_character_text_splitter.ipynb   # التقسيم المباشر بناءً على فواصل محددة
 │   │   ├── 03_html_splitters.ipynb            # تقسيم هياكل الويب مع الحفاظ على العناوين (HTML Splitters)
@@ -28,6 +30,7 @@ Langchain/
 │   │   └── 05_end_to_end_text_splitting.ipynb # 🚀 مسار متكامل لتقسيم وتحليل جودة النصوص
 │   │
 │   ├── 03_embeddings/                         # المرحلة الثالثة: التضمينات والبحث الدلالي
+│   │   ├── README.md                          # 📖 الدليل النظري المفاهيمي الشامل (عربي / English)
 │   │   ├── 01_huggingface_embeddings.ipynb    # نماذج التضمين المحلية وعبر Hugging Face Inference
 │   │   ├── 02_fastembed_embeddings.ipynb      # تضمينات فائقة السرعة على المعالج (FastEmbed ONNX)
 │   │   ├── 03_semantic_search_cosine_similarity.ipynb # البحث الدلالي وحساب تشابه جيب التمام (Cosine Similarity)
@@ -35,6 +38,7 @@ Langchain/
 │   │   └── 05_end_to_end_pipeline.ipynb       # 🚀 مسار التضمينات والبحث الدلالي والكاش المتكامل
 │   │
 │   └── 04_vector_stores/                      # المرحلة الرابعة: مستودعات المتجهات واستراتيجيات الاسترجاع
+│       ├── README.md                          # 📖 الدليل النظري المفاهيمي الشامل (عربي / English)
 │       ├── 01_in_memory_vector_store.ipynb    # المستودع المدمج بالذاكرة في نواة LangChain Core
 │       ├── 02_faiss_vector_store.ipynb        # مكتبة FAISS من Meta (حفظ محلي، مسافات L2، ودمج الفهارس)
 │       ├── 03_chroma_vector_store.ipynb       # مستودع Chroma DB (تخزين دائم، مجموعات، وفلترة متقدمة)
@@ -46,6 +50,7 @@ Langchain/
 ├── .env                                       # ملف المفاتيح السرية (محلي - غير مرفوع للـ Git)
 ├── .env.example                               # نموذج متغيرات البيئة والمفاتيح المطلوبة
 ├── .gitignore                                 # استثناء الملفات والبيئات الافتراضية من Git
+├── AGENTS.md                                  # سكيما ومعايير الـ AI والمطورين لإضافة المسارات
 ├── main.py                                    # نقطة دخول سريعة لتجارب بايثون المباشرة
 ├── pyproject.toml                             # تعريف الحزم والاعتماديات الخاصة بـ uv
 └── README.md                                  # دليل المشروع والتوثيق الشامل
@@ -55,7 +60,10 @@ Langchain/
 
 ## 📚 المحتوى التعليمي والمسارات (Learning Modules)
 
+كل مسار تعليمي يشتمل على **دليل نظري معماري مستقل (`README.md`)** باللغتين العربية والإنجليزية يشرح المفاهيم بدون كود، بالإضافة لكراسات التطبيق العملي والكراس الختامي الشامل:
+
 ### 1️⃣ استيعاب البيانات (Data Ingestion)
+- **📖 الدليل النظري**: [01_data_ingestion/README.md](file:///d:/Code/AI/Langchain/notebooks/01_data_ingestion/README.md)
 - **TextLoader**: قراءة ومعالجة الملفات النصية مع مراقبة الميتاداتا وترميز الأحرف (UTF-8).
 - **PDF Loaders**: مقارنة أداء استخراج النصوص والصفحات بين `PyPDFLoader` و `PyMuPDFLoader`.
 - **WebBaseLoader**: جلب المقالات والصفحات عبر الإنترنت وتنقيتها باستخدام `BeautifulSoup`.
@@ -63,6 +71,7 @@ Langchain/
 - **🚀 End-to-End Pipeline**: دمج كافة المصادر المتعددة في قائمة موحدة من الـ Documents وإثراء الميتاداتا وفحص الجودة.
 
 ### 2️⃣ تقسيم النصوص (Text Splitting & Chunking)
+- **📖 الدليل النظري**: [02_text_splitting/README.md](file:///d:/Code/AI/Langchain/notebooks/02_text_splitting/README.md)
 - **RecursiveCharacterTextSplitter**: المحافظة على السياق اللغوي وترابط الفقرات والجمل قبل التقسيم.
 - **CharacterTextSplitter**: التقسيم المعتمد على أحرف وفواصل مخصصة مع مراعاة `chunk_size` و `chunk_overlap`.
 - **HTML Splitters**: تقسيم صفحات الويب بناءً على وسمات العناوين (`<h1>`, `<h2>`, `<h3>`) لربط كل فقرة بعنوانها الأصلي.
@@ -70,6 +79,7 @@ Langchain/
 - **🚀 End-to-End Pipeline**: خط أنابيب شامل يقسم المستندات المتنوعة ويحلل إحصائيات الجودة (min/max/avg length).
 
 ### 3️⃣ التضمينات النصية والبحث الدلالي (Embeddings & Semantic Search)
+- **📖 الدليل النظري**: [03_embeddings/README.md](file:///d:/Code/AI/Langchain/notebooks/03_embeddings/README.md)
 - **HuggingFace Embeddings**: استخدام نماذج متقدمة مفتوحة المصدر مثل `sentence-transformers/all-MiniLM-L6-v2` و `BAAI/bge-small-en-v1.5`.
 - **FastEmbed**: تنفيذ سريع جداً للتضمينات باستخدام محرك ONNX المحسن للمعالجات العادية (CPU-friendly).
 - **Semantic Search**: حساب الـ Cosine Similarity واسترجاع أكثر المستندات صلة دلالية بالاستعلام.
@@ -77,6 +87,7 @@ Langchain/
 - **🚀 End-to-End Pipeline**: مسار متكامل يبدأ من المستندات الخام وصولاً إلى استرجاع النتائج الأكثر ملاءمة دلالياً وحساب التشابه الرياضي يدوياً.
 
 ### 4️⃣ مستودعات المتجهات والمُسترجعات (Vector Stores & Retrievers)
+- **📖 الدليل النظري**: [04_vector_stores/README.md](file:///d:/Code/AI/Langchain/notebooks/04_vector_stores/README.md)
 - **InMemoryVectorStore**: مستودع خفيف جداً مدمج في `langchain_core` للاختبارات السريعة والجلسات المؤقتة.
 - **FAISS (Facebook AI)**: الفهرسة عالية الكفاءة للمتجهات الكثيفة، حساب مسافات L2، حفظ وتحميل الفهارس محلياً (`save_local` / `load_local`)، ودمج عدة فهارس (`merge_from`).
 - **Chroma DB**: تخزين دائم على القرص (`persist_directory`)، إدارة المجموعات، وعمليات الفلترة المتقدمة بالمعاملات المنطقية (`$and`, `$gte`, `$in`).
