@@ -10,27 +10,29 @@
 Langchain/
 ├── data/                                      # مجلد الملفات والبيانات التجريبية وقواعد البيانات
 │   ├── sample.pdf                             # ملف PDF تجريبي لاختبار الـ PDF Loaders
-│   └── sample.txt                             # ملف نصي تجريبي لاختبار TextLoader
+│   └── sample.txt                             # ملف نصي شامل لاختبار الـ Loaders والـ Vector Stores
 │
 ├── notebooks/                                 # كراسات Jupyter Notebook التعليمية
 │   ├── 01_data_ingestion/                     # المرحلة الأولى: استيراد واستيعاب البيانات
 │   │   ├── 01_text_loader.ipynb               # قراءة الملفات النصية الخام (TextLoader)
 │   │   ├── 02_pdf_loader.ipynb                # استخراج نصوص PDF (PyPDF & PyMuPDF)
 │   │   ├── 03_web_loader.ipynb                # سحب محتوى صفحات الويب (WebBaseLoader & BeautifulSoup)
-│   │   └── 04_arxiv_loader.ipynb              # جلب الأوراق العلمية والملخصات (ArxivLoader)
+│   │   ├── 04_arxiv_loader.ipynb              # جلب الأوراق العلمية والملخصات (ArxivLoader)
+│   │   └── 05_end_to_end_data_ingestion.ipynb # 🚀 مسار استيعاب متكامل من الصفر لكافة المصادر
 │   │
 │   ├── 02_text_splitting/                     # المرحلة الثانية: تقنيات تقسيم النصوص (Chunking)
 │   │   ├── 01_recursive_character_splitter.ipynb # التقسيم الذكي التكراري للنصوص العامة
 │   │   ├── 02_character_text_splitter.ipynb   # التقسيم المباشر بناءً على فواصل محددة
 │   │   ├── 03_html_splitters.ipynb            # تقسيم هياكل الويب مع الحفاظ على العناوين (HTML Splitters)
-│   │   └── 04_json_splitter.ipynb             # تقسيم البيانات الهيكلية (Recursive JSON Splitter)
+│   │   ├── 04_json_splitter.ipynb             # تقسيم البيانات الهيكلية (Recursive JSON Splitter)
+│   │   └── 05_end_to_end_text_splitting.ipynb # 🚀 مسار متكامل لتقسيم وتحليل جودة النصوص
 │   │
 │   ├── 03_embeddings/                         # المرحلة الثالثة: التضمينات والبحث الدلالي
 │   │   ├── 01_huggingface_embeddings.ipynb    # نماذج التضمين المحلية وعبر Hugging Face Inference
 │   │   ├── 02_fastembed_embeddings.ipynb      # تضمينات فائقة السرعة على المعالج (FastEmbed ONNX)
 │   │   ├── 03_semantic_search_cosine_similarity.ipynb # البحث الدلالي وحساب تشابه جيب التمام (Cosine Similarity)
 │   │   ├── 04_cache_backed_embeddings.ipynb   # تسريع الأداء وحفظ التضمينات مؤقتاً (CacheBackedEmbeddings)
-│   │   └── 05_end_to_end_pipeline.ipynb       # مسار متكامل: Ingestion ➔ Splitting ➔ Embedding ➔ Search
+│   │   └── 05_end_to_end_pipeline.ipynb       # 🚀 مسار التضمينات والبحث الدلالي والكاش المتكامل
 │   │
 │   └── 04_vector_stores/                      # المرحلة الرابعة: مستودعات المتجهات واستراتيجيات الاسترجاع
 │       ├── 01_in_memory_vector_store.ipynb    # المستودع المدمج بالذاكرة في نواة LangChain Core
@@ -38,7 +40,8 @@ Langchain/
 │       ├── 03_chroma_vector_store.ipynb       # مستودع Chroma DB (تخزين دائم، مجموعات، وفلترة متقدمة)
 │       ├── 04_qdrant_vector_store.ipynb       # محرك Qdrant بلغة Rust (أداء فائق وفلترة بالـ Payload)
 │       ├── 05_docarray_and_sklearn_stores.ipynb # مستودعات خفيفة تعتمد على Scikit-Learn و DocArray
-│       └── 06_retrievers_and_search_types.ipynb # استراتيجيات الاسترجاع المتقدمة (Similarity, MMR, Threshold, LCEL)
+│       ├── 06_retrievers_and_search_types.ipynb # استراتيجيات الاسترجاع المتقدمة (Similarity, MMR, Threshold, LCEL)
+│       └── 07_end_to_end_rag_vector_pipeline.ipynb # 🚀 منظومة RAG متكاملة من التحميل للـ QA الموثق
 │
 ├── .env                                       # ملف المفاتيح السرية (محلي - غير مرفوع للـ Git)
 ├── .env.example                               # نموذج متغيرات البيئة والمفاتيح المطلوبة
@@ -57,19 +60,21 @@ Langchain/
 - **PDF Loaders**: مقارنة أداء استخراج النصوص والصفحات بين `PyPDFLoader` و `PyMuPDFLoader`.
 - **WebBaseLoader**: جلب المقالات والصفحات عبر الإنترنت وتنقيتها باستخدام `BeautifulSoup`.
 - **ArxivLoader**: البحث المباشر في قاعدة أبحاث arXiv وتحميل ملخصات الأوراق البحثية والبيانات الوصفية.
+- **🚀 End-to-End Pipeline**: دمج كافة المصادر المتعددة في قائمة موحدة من الـ Documents وإثراء الميتاداتا وفحص الجودة.
 
 ### 2️⃣ تقسيم النصوص (Text Splitting & Chunking)
 - **RecursiveCharacterTextSplitter**: المحافظة على السياق اللغوي وترابط الفقرات والجمل قبل التقسيم.
 - **CharacterTextSplitter**: التقسيم المعتمد على أحرف وفواصل مخصصة مع مراعاة `chunk_size` و `chunk_overlap`.
 - **HTML Splitters**: تقسيم صفحات الويب بناءً على وسمات العناوين (`<h1>`, `<h2>`, `<h3>`) لربط كل فقرة بعنوانها الأصلي.
 - **RecursiveJsonSplitter**: معالجة وهيكلة ملفات الـ JSON والبيانات المتداخلة دون كسر بنية البيانات.
+- **🚀 End-to-End Pipeline**: خط أنابيب شامل يقسم المستندات المتنوعة ويحلل إحصائيات الجودة (min/max/avg length).
 
 ### 3️⃣ التضمينات النصية والبحث الدلالي (Embeddings & Semantic Search)
 - **HuggingFace Embeddings**: استخدام نماذج متقدمة مفتوحة المصدر مثل `sentence-transformers/all-MiniLM-L6-v2` و `BAAI/bge-small-en-v1.5`.
 - **FastEmbed**: تنفيذ سريع جداً للتضمينات باستخدام محرك ONNX المحسن للمعالجات العادية (CPU-friendly).
 - **Semantic Search**: حساب الـ Cosine Similarity واسترجاع أكثر المستندات صلة دلالية بالاستعلام.
 - **Cache-Backed Embeddings**: تخزين التضمينات في مخزن محلي (`LocalFileStore` أو `InMemoryByteStore`) لتجنب إعادة حساب نفس النصوص وتوفير الوقت والتكلفة.
-- **End-to-End Pipeline**: تطبيق مسار متكامل يبدأ من المستندات الخام وصولاً إلى استرجاع النتائج الأكثر ملاءمة دلالياً.
+- **🚀 End-to-End Pipeline**: مسار متكامل يبدأ من المستندات الخام وصولاً إلى استرجاع النتائج الأكثر ملاءمة دلالياً وحساب التشابه الرياضي يدوياً.
 
 ### 4️⃣ مستودعات المتجهات والمُسترجعات (Vector Stores & Retrievers)
 - **InMemoryVectorStore**: مستودع خفيف جداً مدمج في `langchain_core` للاختبارات السريعة والجلسات المؤقتة.
@@ -77,11 +82,8 @@ Langchain/
 - **Chroma DB**: تخزين دائم على القرص (`persist_directory`)، إدارة المجموعات، وعمليات الفلترة المتقدمة بالمعاملات المنطقية (`$and`, `$gte`, `$in`).
 - **Qdrant**: محرك متجهي فائق السرعة بلغة Rust، يدعم التشغيل بالذاكرة أو على القرص أو عبر السحابة مع فلترة الـ Payload.
 - **Scikit-Learn & DocArray**: بناء مستودعات متجهية محلية باستخدام خوارزميات `NearestNeighbors` في Scikit-Learn مع خيارات الحفظ بصيغة JSON و Parquet.
-- **Retrievers & Search Strategies**: تحويل أي مستودع إلى Retriever واستخدام أنماط بحث متطورة:
-  - `similarity`: البحث بالتشابه القياسي لأقرب K عناصر.
-  - `mmr` (Maximal Marginal Relevance): تحقيق التوازن المثالي بين دقة الصلة وتنوع النصوص لتفادي التكرار.
-  - `similarity_score_threshold`: استبعاد النتائج التي تقل عن نسبة ثقة معينة.
-  - **LCEL Integration**: دمج المُسترجِع داخل سلاسل RAG متكاملة مع الـ Prompt Templates.
+- **Retrievers & Search Strategies**: تحويل أي مستودع إلى Retriever واستخدام أنماط بحث متطورة (`similarity`, `mmr`, `similarity_score_threshold`).
+- **🚀 End-to-End RAG Pipeline**: تطبيق منظومة RAG كاملة تبدأ من النص الخام، تمر بالتقسيم والتضمين والفهرسة بالـ FAISS، ثم الـ MMR Retriever وربطها بسلسلة LCEL و Prompt موجه لتقديم إجابات موثقة بالأدلة.
 
 ---
 
