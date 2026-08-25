@@ -37,15 +37,22 @@ Langchain/
 │   │   ├── 04_cache_backed_embeddings.ipynb   # تسريع الأداء وحفظ التضمينات مؤقتاً (CacheBackedEmbeddings)
 │   │   └── 05_end_to_end_pipeline.ipynb       # 🚀 مسار التضمينات والبحث الدلالي والكاش المتكامل
 │   │
-│   └── 04_vector_stores/                      # المرحلة الرابعة: مستودعات المتجهات واستراتيجيات الاسترجاع
+│   ├── 04_vector_stores/                      # المرحلة الرابعة: مستودعات المتجهات واستراتيجيات الاسترجاع
+│   │   ├── README.md                          # 📖 الدليل النظري المفاهيمي الشامل (عربي / English)
+│   │   ├── 01_in_memory_vector_store.ipynb    # المستودع المدمج بالذاكرة في نواة LangChain Core
+│   │   ├── 02_faiss_vector_store.ipynb        # مكتبة FAISS من Meta (حفظ محلي، مسافات L2، ودمج الفهارس)
+│   │   ├── 03_chroma_vector_store.ipynb       # مستودع Chroma DB (تخزين دائم، مجموعات، وفلترة متقدمة)
+│   │   ├── 04_qdrant_vector_store.ipynb       # محرك Qdrant بلغة Rust (أداء فائق وفلترة بالـ Payload)
+│   │   ├── 05_docarray_and_sklearn_stores.ipynb # مستودعات خفيفة تعتمد على Scikit-Learn و DocArray
+│   │   ├── 06_retrievers_and_search_types.ipynb # استراتيجيات الاسترجاع المتقدمة (Similarity, MMR, Threshold, LCEL)
+│   │   └── 07_end_to_end_rag_vector_pipeline.ipynb # 🚀 منظومة RAG متكاملة من التحميل للـ QA الموثق
+│   │
+│   └── 05_chains_and_lcel/                    # المرحلة الخامسة: سلاسل LCEL وتطبيقات الذكاء الاصطناعي التوليدي
 │       ├── README.md                          # 📖 الدليل النظري المفاهيمي الشامل (عربي / English)
-│       ├── 01_in_memory_vector_store.ipynb    # المستودع المدمج بالذاكرة في نواة LangChain Core
-│       ├── 02_faiss_vector_store.ipynb        # مكتبة FAISS من Meta (حفظ محلي، مسافات L2، ودمج الفهارس)
-│       ├── 03_chroma_vector_store.ipynb       # مستودع Chroma DB (تخزين دائم، مجموعات، وفلترة متقدمة)
-│       ├── 04_qdrant_vector_store.ipynb       # محرك Qdrant بلغة Rust (أداء فائق وفلترة بالـ Payload)
-│       ├── 05_docarray_and_sklearn_stores.ipynb # مستودعات خفيفة تعتمد على Scikit-Learn و DocArray
-│       ├── 06_retrievers_and_search_types.ipynb # استراتيجيات الاسترجاع المتقدمة (Similarity, MMR, Threshold, LCEL)
-│       └── 07_end_to_end_rag_vector_pipeline.ipynb # 🚀 منظومة RAG متكاملة من التحميل للـ QA الموثق
+│       ├── 01_chat_models_and_prompts.ipynb   # نماذج المحادثة (ChatGroq) وقوالب التوجيه (ChatPromptTemplate)
+│       ├── 02_lcel_and_output_parsers.ipynb   # لغة التعبير LCEL ومحللات المخرجات (StrOutputParser & Runnables)
+│       ├── 03_rag_chains_with_retrievers.ipynb # بناء سلاسل RAG متقدمة وربط الـ Retrievers بالسلاسل
+│       └── 04_end_to_end_web_rag_app.ipynb    # 🚀 تطبيق GenAI متكامل من صفحات الويب إلى إجابات موثقة
 │
 ├── .env                                       # ملف المفاتيح السرية (محلي - غير مرفوع للـ Git)
 ├── .env.example                               # نموذج متغيرات البيئة والمفاتيح المطلوبة
@@ -95,6 +102,13 @@ Langchain/
 - **Scikit-Learn & DocArray**: بناء مستودعات متجهية محلية باستخدام خوارزميات `NearestNeighbors` في Scikit-Learn مع خيارات الحفظ بصيغة JSON و Parquet.
 - **Retrievers & Search Strategies**: تحويل أي مستودع إلى Retriever واستخدام أنماط بحث متطورة (`similarity`, `mmr`, `similarity_score_threshold`).
 - **🚀 End-to-End RAG Pipeline**: تطبيق منظومة RAG كاملة تبدأ من النص الخام، تمر بالتقسيم والتضمين والفهرسة بالـ FAISS، ثم الـ MMR Retriever وربطها بسلسلة LCEL و Prompt موجه لتقديم إجابات موثقة بالأدلة.
+
+### 5️⃣ سلاسل LCEL وتطبيقات الذكاء الاصطناعي التوليدي (Chains & LCEL)
+- **📖 الدليل النظري**: [05_chains_and_lcel/README.md](file:///d:/Code/AI/Langchain/notebooks/05_chains_and_lcel/README.md)
+- **Chat Models & Prompts**: استخدام نماذج `ChatGroq` الفائقة السرعة وقوالب التوجيه المنظمة `ChatPromptTemplate` والبث الحي (Streaming).
+- **LCEL & Output Parsers**: المعمارية الحديثة بمشغل الربط `|`، واستخراج النصوص النظيفة عبر `StrOutputParser` وإدارة التدفق بـ `RunnablePassthrough` و `RunnableParallel`.
+- **RAG Chains with Retrievers**: ربط مستودعات المتجهات بالسلاسل التوليدية، تنسيق السياق (`format_docs`) وصياغة قوالب تمنع الهلوسة.
+- **🚀 End-to-End Web RAG App**: تطبيق GenAI متكامل من استيعاب صفحات الويب الحية عبر `WebBaseLoader`، تقسيم النصوص، التضمين المحلي، الفهرسة بـ FAISS، وحتى الرد التفاعلي الموثق.
 
 ---
 
