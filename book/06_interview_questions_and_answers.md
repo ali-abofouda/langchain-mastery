@@ -78,6 +78,10 @@
   3. حجب المستندات ذات نسبة التشابه المنخفضة باستخدام `similarity_score_threshold`.
   4. استخدام تقنيات الـ Reranking لإعادة ترتيب النتائج قبل إرسالها للنموذج.
 
+### س11: كيف تتعامل مع إدارة الذاكرة وسجل المحادثات (Chat History) في LangChain 0.3+؟
+- **الإجابة**:
+  استخدام الفئة القياسية `RunnableWithMessageHistory` مع دالة إرجاع السجل `get_session_history` وتضمين `MessagesPlaceholder(variable_name="messages")` داخل التوجيه. يتم التحكم بالفصل التام بين الجلسات بمرور `session_id` مختلف في الـ `configurable`.
+
 </div>
 
 ---
@@ -86,14 +90,19 @@
 
 ## 📌 5. Technical Interview Cheat-Sheet (English Q&A)
 
-### Q11: What is Maximal Marginal Relevance (MMR) and why is it useful in RAG?
+### Q12: What is Maximal Marginal Relevance (MMR) and why is it useful in RAG?
 - **Answer**:
   MMR optimizes for both **relevance** to the user query and **diversity** among the retrieved documents. It prevents returning duplicate or redundant document chunks that convey the same information in slightly different phrasing.
 
-### Q12: How do you handle Arabic text chunking and embeddings efficiently?
+### Q13: How do you handle Arabic text chunking and embeddings efficiently?
 - **Answer**:
   1. Ensure UTF-8 encoding across loaders (`encoding="utf-8"`).
   2. Use multilingual embedding models such as `sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2` or `bge-m3`.
   3. Avoid aggressive character splitters that break Arabic word roots.
+
+### Q14: How do you manage memory window overflow when chat history grows too large?
+- **Answer**:
+  1. Summarization: Periodically summarize past messages using an LLM chain and inject the summary into the system prompt.
+  2. Window Truncation: Retain only the last $N$ messages or tokens using message trimming utilities (`trim_messages`).
 
 </div>

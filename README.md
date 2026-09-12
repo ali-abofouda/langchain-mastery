@@ -73,7 +73,7 @@ Langchain/
 - **02 Text Splitting**: تكتيكات التقسيم التكراري والهيكلي وتوازن Overlap.
 - **03 Embeddings**: التضمينات المحلية وبحث تشابه جيب التمام والكاش.
 - **04 Vector Stores**: مستودعات FAISS, Chroma DB, Qdrant, و InMemory.
-- **05 Chains & LCEL**: تعبيرات LCEL وقوالب المحادثات وسلاسل RAG.
+- **05 Chains & LCEL**: تعبيرات LCEL، إدارة الذاكرة وسجل المحادثات (`RunnableWithMessageHistory`)، وسلاسل RAG.
 - **06 Local LLMs & Ollama**: ربط النماذج المحلية والتتبع بـ LangSmith.
 - **07 LangServe Deployment**: استخراج الـ Schemas بـ Pydantic ونشر خوادم الـ REST APIs.
 
@@ -81,6 +81,7 @@ Langchain/
 - **01 Football RAG**: تطبيق RAG متكامل بالـ CLI و Streamlit UI استناداً لبيانات ويكيبيديا.
 - **02 LangServe API**: خادم REST API حي وجاهز للاستخدام مع Swagger & Playground.
 - **03 Ollama Local Assistant**: مساعد محلي ذكي يشتغل بدون إنترنت بـ Ollama & Streamlit.
+- **04 Conversational Chatbot**: تطبيق محادثة ذكي بـ Streamlit UI يدعم الجلسات والذاكرة الممتدة.
 
 ### 3️⃣ الكتاب المرجعي وبنك المقابلات (`book/`)
 - **[الفصل 01 - استيعاب المستندات](file:///d:/Code/AI/Langchain/book/01_data_ingestion_guide.md)**

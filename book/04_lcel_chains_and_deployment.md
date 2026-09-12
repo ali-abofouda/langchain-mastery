@@ -60,4 +60,17 @@ chain = prompt | model | output_parser
 ### 2️⃣ التتبع بـ LangSmith:
 - بمجرد ضبط `LANGSMITH_TRACING="true"` ومفتاح الـ API، يمكنك رؤية الشجرة الكاملة لتنفيذ السلسلة، زمن الاستجابة، ونصوص التوجيه الدقيقة.
 
+---
+
+## 📌 5. إدارة سجل المحادثات والذاكرة (Chat History & Memory Management)
+
+في البنيات القياسية السابقة، كانت استدعاءات النماذج تعتبر بدون حالة (Stateless). ولكن في تطبيقات المحادثة التفاعلية (Chatbots)، يجب على السلسلة أن تتذكر ما تم قوله في الرسائل السابقة.
+
+### المعمارية الحديثة: `RunnableWithMessageHistory`:
+- بدلاً من الفئات القديمة مثل `LLMChain` مع `ConversationBufferMemory`، تتبنى لانج تشين الحديثة فئة **`RunnableWithMessageHistory`**.
+- تعتمد على:
+  1. **`MessagesPlaceholder(variable_name="messages")`**: مكان مخصص في قالب التوجيه لحقن تاريخ الرسائل السابقة تلقائياً.
+  2. **`ChatMessageHistory`**: كائن يخزن الرسائل المتعاقبة (`HumanMessage` و `AIMessage`).
+  3. **`session_id`**: مفتاح محدد في خيارات التكوين (`config={"configurable": {"session_id": "user_123"}}`) يضمن الفصل التام بين ذاكرة مستخدم وآخر.
+
 </div>
