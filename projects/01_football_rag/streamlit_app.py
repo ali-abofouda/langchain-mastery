@@ -1,7 +1,6 @@
 import os
-
 import streamlit as st
-from dotenv import load_dotenv
+from dotenv import load_dotenv, find_dotenv
 from langchain_classic.chains.combine_documents import create_stuff_documents_chain
 from langchain_community.document_loaders import WebBaseLoader
 from langchain_community.vectorstores import FAISS
@@ -16,7 +15,7 @@ SOURCE_URL = "https://en.wikipedia.org/wiki/Association_football"
 
 @st.cache_resource(show_spinner=False)
 def build_rag_components():
-    load_dotenv()
+    load_dotenv(find_dotenv())
     if not os.getenv("GROQ_API_KEY"):
         raise RuntimeError("GROQ_API_KEY is not set in the environment or .env file.")
 
