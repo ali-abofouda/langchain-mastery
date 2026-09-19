@@ -82,6 +82,15 @@
 - **الإجابة**:
   استخدام الفئة القياسية `RunnableWithMessageHistory` مع دالة إرجاع السجل `get_session_history` وتضمين `MessagesPlaceholder(variable_name="messages")` داخل التوجيه. يتم التحكم بالفصل التام بين الجلسات بمرور `session_id` مختلف في الـ `configurable`.
 
+### س12: ما هي خوارزمية HNSW المستعملة في Chroma DB وكيف تختلف عن التفتيش الخطي (Flat Search)؟
+- **الإجابة**:
+  - **HNSW (Hierarchical Navigable Small World)**: تبني رسماً بيانياً متعدد الطبقات يربط النقاط القريبة ببعضها على هيئة شبكة عالمية صغيرة.
+  - **الفارق**: التفتيش الخطي يفحص كل المتجهات بشرط $O(N \cdot D)$ وهو بطيء مع زيادة المستندات، بينما HNSW تبحث في طبقات الشبكة في زمن تعقيدي $O(\log N)$ مع الحفاظ على دقة مطابقة تتجاوز 98%.
+
+### س13: ما دور الاستعلام الجماعي المتوازي (`retriever.batch`) وكيف يحسن أداء الخوادم الإنتاجية؟
+- **الإجابة**:
+  يتيح إرسال قائمة من الأسئلة المتعددة دفعة واحدة وتوسيع نطاق المعالجة المتوازية (Async / Multi-threading)، مما يرفع من إنتاجية الخادم (Throughput) ويقلل من التأخير المتراكم (Latency) مقارنة بالمرور التكراري لكل سؤال على حدة (`invoke`).
+
 </div>
 
 ---
@@ -90,19 +99,25 @@
 
 ## 📌 5. Technical Interview Cheat-Sheet (English Q&A)
 
-### Q12: What is Maximal Marginal Relevance (MMR) and why is it useful in RAG?
+### Q14: What is Maximal Marginal Relevance (MMR) and why is it useful in RAG?
 - **Answer**:
   MMR optimizes for both **relevance** to the user query and **diversity** among the retrieved documents. It prevents returning duplicate or redundant document chunks that convey the same information in slightly different phrasing.
 
-### Q13: How do you handle Arabic text chunking and embeddings efficiently?
+### Q15: How do you handle Arabic text chunking and embeddings efficiently?
 - **Answer**:
   1. Ensure UTF-8 encoding across loaders (`encoding="utf-8"`).
   2. Use multilingual embedding models such as `sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2` or `bge-m3`.
   3. Avoid aggressive character splitters that break Arabic word roots.
 
-### Q14: How do you manage memory window overflow when chat history grows too large?
+### Q16: How do you manage memory window overflow when chat history grows too large?
 - **Answer**:
   1. Summarization: Periodically summarize past messages using an LLM chain and inject the summary into the system prompt.
   2. Window Truncation: Retain only the last $N$ messages or tokens using message trimming utilities (`trim_messages`).
 
+### Q17: What is the primary difference between FAISS IVF and Chroma DB HNSW indexing?
+- **Answer**:
+  - **FAISS IVF (Inverted File)** clusters vectors into Voronoi cells using k-means and searches only candidate centroids, reducing search scope but requiring explicit training.
+  - **Chroma HNSW (hnswlib)** builds a multi-layer graph dynamically on data insertion, allowing incremental real-time indexing without separate training phases.
+
 </div>
+

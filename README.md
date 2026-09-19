@@ -30,8 +30,12 @@ Langchain/
 │   │   └── streamlit_app.py                   # تطبيق الويب التفاعلي
 │   ├── 02_langserve_api/                      # خادم REST API للـ LCEL بـ LangServe & FastAPI
 │   │   └── serve.py                           # سكريبت تشغيل خادم الـ REST API
-│   └── 03_ollama_local_assistant/             # مساعد ذكي محلي بـ Ollama & Streamlit
-│       └── app.py                             # تطبيق المساعد المحلي التفاعلي
+│   ├── 03_ollama_local_assistant/             # مساعد ذكي محلي بـ Ollama & Streamlit
+│   │   └── app.py                             # تطبيق المساعد المحلي التفاعلي
+│   ├── 04_conversational_chatbot/             # تطبيق محادثة ذكي بـ Streamlit UI والذاكرة
+│   └── 05_web_rag_assistant/                  # مساعد استعلام مقالات الويب والأبحاث (CLI + Streamlit Dark Mode)
+│       ├── app.py                             # تطبيق سطر الأوامر CLI
+│       └── streamlit_app.py                   # واجهة الويب التفاعلية بـ Dark Mode
 │
 └── book/                                      # 📚 الكتاب الشامل وحقيبة التعلم وأسئلة المقابلات
     ├── README.md                              # فهرس وخريطة الكتاب الشامل
@@ -47,7 +51,7 @@ Langchain/
 
 ## 🔄 دورة حياة التعلم (The 4-Step Learning Lifecycle)
 
-يقوم النظام على دورة عمل مرنة تمنحك الحرية الكاملة أثناء متابعة أي كورس:
+قوم النظام على دورة عمل مرنة تمنحك الحرية الكاملة أثناء متابعة أي كورس:
 
 ```text
 1. Playground (التجربة المسودة)  ──>  ضع أكوادك الحرة المسودة في playground/
@@ -82,6 +86,8 @@ Langchain/
 - **02 LangServe API**: خادم REST API حي وجاهز للاستخدام مع Swagger & Playground.
 - **03 Ollama Local Assistant**: مساعد محلي ذكي يشتغل بدون إنترنت بـ Ollama & Streamlit.
 - **04 Conversational Chatbot**: تطبيق محادثة ذكي بـ Streamlit UI يدعم الجلسات والذاكرة الممتدة.
+- **05 Web RAG Assistant**: مساعد استعلام المقالات وأوراق الأبحاث بـ CLI و Streamlit Dark Mode.
+
 
 ### 3️⃣ الكتاب المرجعي وبنك المقابلات (`book/`)
 - **[الفصل 01 - استيعاب المستندات](file:///d:/Code/AI/Langchain/book/01_data_ingestion_guide.md)**

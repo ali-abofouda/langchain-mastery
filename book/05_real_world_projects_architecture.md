@@ -33,4 +33,29 @@
    - استخدام نماذج سريعة سحابياً (مثل `ChatGroq`) للسرعة في الإجابات العامة.
    - استخدام النماذج المحلية (`Ollama`) للبيانات الحساسة أو عند انقطاع الاتصال.
 
+---
+
+## 📌 3. معمارية تطبيق مساعد Web RAG Assistant (`projects/05_web_rag_assistant`)
+
+تعتمد المعمارية الهندسية لمساعد الـ Web RAG على معالجة البيانات غير المهيكلة المستخرجة حياً من الويب:
+
+```text
+[Web URL] 🌐 
+    ↓ (WebBaseLoader)
+[HTML Content Extraction & Cleaning]
+    ↓ (RecursiveCharacterTextSplitter: 1000/200)
+[Chunks Stream]
+    ↓ (HuggingFaceEmbeddings: all-MiniLM-L6-v2)
+[Dense Vector Embeddings]
+    ↓ (Chroma DB Indexing - HNSW Graph)
+[Chroma Retriever (k=3)] 
+    ↓ (LCEL Pipeline: context | prompt | ChatGroq)
+[Grounded Answer + UI Streamlit Dark Mode / CLI]
+```
+
+### التكتيكات المعمارية:
+- **التخزين المؤقت للنماذج (`@st.cache_resource`)**: تحسين سرعة إقلاع الواجهة وعدم إعادة تحميل نموذج التضمين مع كل إعادة رسم للصفحة.
+- **إعادة التأطير السياقي (Context Re-grounding)**: الحفاظ على السياق الأكاديمي والتقني بدقة من خلال القوالب الموجهة (Strict Prompts).
+
 </div>
+
